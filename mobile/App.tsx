@@ -1,21 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
-export default function App() {
+import AppRoutes from './src/routes/app.routes';
+
+const App: React.FC = () => {
   return (
-    <View style={styles.container}>
-      <Text>Welcome, Civi App</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <AppRoutes />
+    </NavigationContainer>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
