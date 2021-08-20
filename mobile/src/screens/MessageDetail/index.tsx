@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { format } from 'date-fns';
 
 import { api } from '../../services/api';
 
@@ -7,7 +8,13 @@ import { RootStackParamList } from '../../routes/app.routes';
 import Header from '../../components/Header';
 import { IMessage } from '../../components/MessageItem';
 
-import { Container, Content, ContentDescription, ContentTitle } from './styles';
+import {
+  Container,
+  Content,
+  ContentDescription,
+  ContentTitle,
+  DateTime,
+} from './styles';
 
 type IMessageDetailStackScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -42,6 +49,9 @@ const MessageDetail: React.FC<IMessageDetailStackScreenProps> = ({
       {message && (
         <Content>
           <ContentTitle>{message.subject}</ContentTitle>
+          <DateTime>
+            {format(message.timestamp, "MMM dd',' yyyy',' p")}
+          </DateTime>
 
           <ContentDescription>{message.detail}</ContentDescription>
         </Content>
