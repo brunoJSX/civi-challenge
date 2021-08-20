@@ -22,6 +22,9 @@ type IInboxProps = {
 const Inbox: React.FC<IInboxProps> = ({ navigation }) => {
   const [messages, setMessages] = useState<IMessage[]>([]);
 
+  // hack to force re-render
+  const [forceRender, setForceRender] = useState(false);
+
   useEffect(() => {
     const fetchMessages = async () => {
       const { data } = await api.get('messages');
@@ -30,11 +33,16 @@ const Inbox: React.FC<IInboxProps> = ({ navigation }) => {
     };
 
     fetchMessages();
-  }, []);
+  }, [forceRender]);
 
   return (
     <Container>
-      <Header title="Inbox" />
+      <Header
+        title="Inbox"
+        rightIcons={[
+          { name: 'refresh-ccw', onPress: () => setForceRender(!forceRender) },
+        ]}
+      />
 
       <FlatList
         data={messages}
