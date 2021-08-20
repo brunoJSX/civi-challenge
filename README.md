@@ -10,6 +10,15 @@
 
 This is a mobile application, developed in React Native and Node.JS, a bit like Gmail app. It was developed as a challenge proposed by Civi App.
 
+
+  ***
+
+  **ATTENTION :warning:**
+
+  Please perform the entire process below on a Linux platform, otherwise unexpected errors may occur.
+
+  ***
+
 ### Requirements:
 
 - [node.js](https://nodejs.org/en/)
@@ -74,13 +83,13 @@ This is a mobile application, developed in React Native and Node.JS, a bit like 
     expo start
   ```
 
-  Finally, it will open in a browser tab, you can use the android or ios emulator, or simply download the Expo app, on your physical device, and read the QRCode.
+  Download the Expo app, on your physical device, and read the QRCode that appeared on your terminal.
 
   ***
 
-  **NOTE**
+  **NOTE :warning:**
 
-  If you want to use the Expo app, you must be on the same wifi network.
+  Your mobile device and front-end server must be on the same Wi-Fi network
 
   ***
 
