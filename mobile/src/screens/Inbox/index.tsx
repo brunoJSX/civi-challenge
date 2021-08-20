@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FlatList } from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 import { api } from '../../services/api';
@@ -24,6 +25,7 @@ const Inbox: React.FC<IInboxProps> = ({ navigation }) => {
 
   // hack to force re-render
   const [forceRender, setForceRender] = useState(false);
+  const isFocused = useIsFocused();
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -33,7 +35,7 @@ const Inbox: React.FC<IInboxProps> = ({ navigation }) => {
     };
 
     fetchMessages();
-  }, [forceRender]);
+  }, [forceRender, isFocused]);
 
   return (
     <Container>
