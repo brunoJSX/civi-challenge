@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { format } from 'date-fns';
 
@@ -39,11 +39,17 @@ const MessageDetail: React.FC<IMessageDetailStackScreenProps> = ({
     fetch();
   }, [messageId]);
 
+  const handleDelete = useCallback(async () => {
+    await api.delete(`/messages/${messageId}`);
+
+    navigation.goBack();
+  }, [messageId, navigation]);
+
   return (
     <Container>
       <Header
         leftIcon={{ name: 'arrow-left', onPress: () => navigation.goBack() }}
-        rightIcons={[{ name: 'trash', onPress: () => navigation.goBack() }]}
+        rightIcons={[{ name: 'trash', onPress: handleDelete }]}
       />
 
       {message && (
