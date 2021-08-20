@@ -1,34 +1,51 @@
-import React, { useEffect } from 'react';
-import { Text } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { api } from '../../services/api';
 
 import { RootStackParamList } from '../../routes/app.routes';
 import Header from '../../components/Header';
+import { IMessage } from '../../components/MessageItem';
 
-import { Container } from './styles';
+import { Container, Content, ContentDescription, ContentTitle } from './styles';
 
 type IMessageDetailStackScreenProps = NativeStackScreenProps<
   RootStackParamList,
   'MessageDetail'
 >;
 
-const MessageDetail: React.FC<IMessageDetailStackScreenProps> = ({ route }) => {
+const MessageDetail: React.FC<IMessageDetailStackScreenProps> = ({
+  route,
+  navigation,
+}) => {
   const { messageId } = route.params;
+  const [message, setMessage] = useState<IMessage>();
 
   useEffect(() => {
-    const markAsRead = async () => {
+    const fetch = async () => {
       await api.patch(`/messages/${messageId}/mark-as-read`);
+      const { data } = await api.get(`/messages/${messageId}`);
+
+      setMessage(data);
     };
 
-    markAsRead();
+    fetch();
   }, [messageId]);
 
   return (
     <Container>
-      <Header />
-      <Text>Welcome to MessageDetail from MessageId: {messageId}</Text>
+      <Header
+        leftIcon={{ name: 'arrow-left', onPress: () => navigation.goBack() }}
+        rightIcons={[{ name: 'trash', onPress: () => navigation.goBack() }]}
+      />
+
+      {message && (
+        <Content>
+          <ContentTitle>{message.subject}</ContentTitle>
+
+          <ContentDescription>{message.detail}</ContentDescription>
+        </Content>
+      )}
     </Container>
   );
 };

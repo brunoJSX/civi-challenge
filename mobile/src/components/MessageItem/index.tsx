@@ -7,6 +7,7 @@ export type IMessage = {
   id: number;
   timestamp: number;
   subject: string;
+  detail: string;
   readed: boolean;
 };
 

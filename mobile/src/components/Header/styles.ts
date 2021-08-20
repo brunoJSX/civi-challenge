@@ -18,7 +18,7 @@ export const Title = styled.Text`
 
 export const Icon = styled(Feather)`
   color: #fff;
-  font-size: 24px;
+  font-size: 20px;
   margin-right: 10px;
 `;
 
