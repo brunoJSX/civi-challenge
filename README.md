@@ -6,18 +6,25 @@
  "To infinity and beyond 🚀"
 </div>
 
+&nbsp;
+
+<h1 align="center">
+  <img alt="Logo" title="#ASK3" src="./mobile/.github/preview_app.gif" />
+</h1>
+
+&nbsp;
+
 ## About 🤓
 
 This is a mobile application, developed in React Native and Node.JS, a bit like Gmail app. It was developed as a challenge proposed by Civi App.
 
+---
 
-  ***
+**ATTENTION :warning:**
 
-  **ATTENTION :warning:**
+Please perform the entire process below on a Linux platform, otherwise unexpected errors may occur.
 
-  Please perform the entire process below on a Linux platform, otherwise unexpected errors may occur.
-
-  ***
+---
 
 ### Requirements:
 
