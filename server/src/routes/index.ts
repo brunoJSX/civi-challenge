@@ -161,6 +161,21 @@ routes.get('/messages', (request, response) => {
   return response.json(messagesOrdered);
 });
 
+routes.get('/messages/:id', (request, response) => {
+  const { id } = request.params;
+
+  const message = messages.find(msg => msg.id === Number(id));
+
+  if (!message) {
+    return response.status(400).json({
+      status: 'error',
+      message: 'Message not found',
+    });
+  }
+
+  return response.json(message);
+});
+
 routes.patch('/messages/:id/mark-as-read', (request, response) => {
   const { id } = request.params;
 
